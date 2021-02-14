@@ -3,11 +3,11 @@ const fs = require(`fs`);
 const util = require('util');
 const Prompt = require('inquirer/lib/prompts/base');
 const chalk = require('chalk');
-const generateMarkdown = require('./dist/generateMarkdown.js');
+const generateMarkdown = require('./src/generateMarkdown.js');
 const jest = require ('jest');
-const Manager1 = require('./lib/Manager');
-const Intern1 = require ('./lib/Intern.js');
-const Engineer1 = require ('./lib/Engineer.js');
+const Manager = require('./lib/Manager');
+const Intern = require ('./lib/Intern.js');
+const Engineer = require ('./lib/Engineer.js');
 
 
 
@@ -39,7 +39,7 @@ const promptManager = () => {
         {
             type: "list",
             message: "Please select a team member to add.",
-            name: "newUser ",
+            name: "newUser1 ",
             choices: [
                 "Engineer",
                 "Intern",
@@ -47,7 +47,7 @@ const promptManager = () => {
             ]
         },
     ]);
-};
+}
 
 const promptEngineer = () => {
     return inquirer.prompt([
@@ -74,7 +74,7 @@ const promptEngineer = () => {
         {
             type: "list",
             message: "Please select a team member to add.",
-            name: "newUser ",
+            name: "newUser2 ",
             choices: [
                 "Engineer",
                 "Intern",
@@ -103,12 +103,12 @@ const promptIntern = () => {
         {
             type: "input",
             message: "What school is the Intern from?",
-            name: "school"
+            name: "internSchool"
         },
         {
             type: "list",
             message: "Please select a team member to add.",
-            name: "newUser ",
+            name: "newUser3 ",
             choices: [
                 "Engineer",
                 "Intern",
@@ -128,7 +128,7 @@ const generateHTML = (answers) =>
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"> 
 <link rel="stylesheet" type "text/css" href="/Assets/style.css">
-<title>Document</title>
+<title>My Team</title>
 </head>
     <body>
         <div class="topnav" style="backgroung-color:white;height="100px;">
@@ -149,13 +149,13 @@ const generateHTML = (answers) =>
                             </div>   
                         </div>     
                         <div class="col-sm-3">
-                            <div id="engineer1">
+                            <div id="engineer">
                                 <h2> Engineer<h2>
                                 <ul>
-                                <li><p id="name"> Name:${answers.engineer1Name}.</p>
-                                <li><p id="id">ID:${answers.engineer1Id}.</p>
-                                <li><p id="email"> Email:${answers.engineer1Email}.</p>
-                                <li><p id="github"> GitHub:${answers.engineer1Github}.</p>
+                                <li><p id="name"> Name:${answers.engineerName}.</p>
+                                <li><p id="id">ID:${answers.engineerId}.</p>
+                                <li><p id="email"> Email:${answers.engineerEmail}.</p>
+                                <li><p id="github"> GitHub:${answers.engineerGithub}.</p>
                                 </ul>
                             </div>  
                         </div>      
@@ -166,7 +166,7 @@ const generateHTML = (answers) =>
                                 <li><p id="name"> Name:${answers.internName}.</p>
                                 <li><p id="id">ID:${answers.internId}.</p>
                                 <li><p id="email"> Email:${answers.internEmail}.</p>
-                                <li><p id="github"> GitHub:${answers.internGithub}.</p>
+                                <li><p id="school"> School:${answers.internSchool}.</p>
                                 </ul>
                             </div>   
                         </div>    
@@ -181,5 +181,4 @@ const init = () => {
     .then(() => console.log('New HTML file successfully generated!'))
     .catch((err) => console.log('Error, no files were generated.', err));
 }
-
 init();
