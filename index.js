@@ -3,11 +3,44 @@ const fs = require('fs');
 const util = require('util');
 const Prompt = require('inquirer/lib/prompts/base');
 const chalk = require('chalk');
-const generateMarkdown = require('./Assets/generateMarkdown.js')
+const generateMarkdown = require('./dist/generateMarkdown.js');
+const jest = require ('jest');
+const Manager = require ('./lib/Manager');
+const Intern = require ('./lib/Intern.js');
+const Engineer = require ('./lib/Engineer.js');
+
+
 
 // create writeFile function using promises instead of a callback function
 const writeFileAsync = util.promisify(fs.writeFile);
 
+//Prompt for Employee
+const promptEmployee = () => {
+    return inquirer.prompt([
+        {
+            type:'input',
+            message: "What is the team members name?",
+            name: "employeeName"
+        },
+        {
+            type:'input',
+            message: "What is the team members ID?",
+            name: "empoyeeId"
+        },
+        {
+            type: "input",
+            message: "What is the team members email?",
+            name: "employeeEmail"
+        },
+        {
+            type: "input",
+            message: "What is the team members role?",
+            name: "employeeRole"
+        },
+    ]);
+};
+
+//Prompt for Manager
 const promptManager = () => {
     return inquirer.prompt([
         {
@@ -91,8 +124,8 @@ const promptIntern = () => {
         },
         {
             type: "input",
-            message: "What is the team members github username?",
-            name: "internGithub"
+            message: "What school is the Intern from?",
+            name: "school"
         },
     ]);
 };
@@ -105,7 +138,8 @@ const generateHTML = (answers) =>
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"> <link rel="stylesheet" type "text/css" href="/Assets/style.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"> 
+<link rel="stylesheet" type "text/css" href="/Assets/style.css">
 <title>Document</title>
 </head>
     <body>
@@ -115,7 +149,7 @@ const generateHTML = (answers) =>
             <div class="jumbotron jumbotron-fluid">
                 <div class="container">
                     <div class="row">
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
                             <div id="manager">
                                 <h2> Manager<h2>
                                 <ul>
@@ -126,7 +160,7 @@ const generateHTML = (answers) =>
                                 </ul>
                             </div>   
                         </div>     
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
                             <div id="engineer1">
                                 <h2> Engineer<h2>
                                 <ul>
@@ -137,29 +171,7 @@ const generateHTML = (answers) =>
                                 </ul>
                             </div>  
                         </div>      
-                        <div class="col-sm-4">
-                            <div id="engineer2">
-                                <h2> Engineer<h2>
-                                <ul>
-                                <li><p id="name"> Name:${answers.engineer2Name}.</p>
-                                <li><p id="id">ID:${answers.engineer2Id}.</p>
-                                <li><p id="email"> Email:${answers.engineer2Email}.</p>
-                                <li><p id="github"> GitHub:${answers.engineer2Github}.</p>
-                                </ul>
-                            </div>
-                        </div>     
-                        <div class="col-sm-4">
-                            <div id="engineer3">
-                                <h2> Engineer<h2>
-                                <ul>
-                                <li><p id="name"> Name:${answers.engineer3Name}.</p>
-                                <li><p id="id">ID:${answers.engineer3Id}.</p>
-                                <li><p id="email"> Email:${answers.engineer2Email}.</p>
-                                <li><p id="github"> GitHub:${answers.engineer2Github}.</p>
-                                </ul>
-                            </div>  
-                        </div>      
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
                             <div id="intern">
                                 <h2> Intern<h2>
                                 <ul>
@@ -178,8 +190,8 @@ const generateHTML = (answers) =>
 const init = () => {
     promptUser()
     .then((answers) => writeFileAsync('index.html', generateMarkdown(answers)))
-    .then(() => console.log('New README file successfully generated!'))
-    .catch((err) => console.log('Oops! Your README.md file was not created.', err));
+    .then(() => console.log('New HTML file successfully generated!'))
+    .catch((err) => console.log('Error, no files were generated.', err));
 }
 
 init();
