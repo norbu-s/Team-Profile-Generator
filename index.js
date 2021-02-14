@@ -2,6 +2,8 @@ const inquirer = require('inquirer');
 const fs = require('fs');
 const util = require('util');
 const Prompt = require('inquirer/lib/prompts/base');
+const chalk = require('chalk');
+const generateMarkdown = require('./Assets/generateMarkdown.js')
 
 // create writeFile function using promises instead of a callback function
 const writeFileAsync = util.promisify(fs.writeFile);
@@ -30,75 +32,43 @@ const promptManager = () => {
         },
     ]);
 };
-const promptEngineer1 = () => {
+
+const promptUser = () => {
     return inquirer.prompt([
         {
-            type:'input',
-            message: "What is the team members name?",
-            name: "engineer1Name"
-        },
-        {
-            type:'input',
-            message: "What is the team members ID?",
-            name: "engineer1Id"
-        },
-        {
-            type: "input",
-            message: "What is the team members email?",
-            name: "engineer1Email"
-        },
-        {
-            type: "input",
-            message: "What is the team members github username?",
-            name: "engineer1Github"
+            type: "list",
+            message: "Please select a team member to add.",
+            name: "newUser ",
+            choices: [
+                "Engineer",
+                "Intern",
+                "Finish building my team"
+            ]
         },
     ]);
 };
-const promptEngineer2 = () => {
+
+const promptEngineer = () => {
     return inquirer.prompt([
         {
             type:'input',
             message: "What is the team members name?",
-            name: "engineer2Name"
+            name: "engineerName"
         },
         {
             type:'input',
             message: "What is the team members ID?",
-            name: "engineer2Id"
+            name: "engineerId"
         },
         {
             type: "input",
             message: "What is the team members email?",
-            name: "engineer2Email"
+            name: "engineerEmail"
         },
         {
             type: "input",
             message: "What is the team members github username?",
-            name: "engineer2Github"
-        },
-    ]);
-};
-const promptEngineer3 = () => {
-    return inquirer.prompt([
-        {
-            type:'input',
-            message: "What is the team members name?",
-            name: "engineer3Name"
-        },
-        {
-            type:'input',
-            message: "What is the team members ID?",
-            name: "engineer3Id"
-        },
-        {
-            type: "input",
-            message: "What is the team members email?",
-            name: "engineer3Email"
-        },
-        {
-            type: "input",
-            message: "What is the team members github username?",
-            name: "engineer3Github"
+            name: "engineerGithub"
         },
     ]);
 };
@@ -139,12 +109,13 @@ const generateHTML = (answers) =>
 <title>Document</title>
 </head>
     <body>
-        <h1>My Team<h1>
-          <br>
-             <div class="jumbotron jumbotron-fluid">
+        <div class="topnav" style="backgroung-color:white;height="100px;">
+            <h1 style="color:blue; text-align: center;"> My Team</h1>
+        </div>
+            <div class="jumbotron jumbotron-fluid">
                 <div class="container">
                     <div class="row">
-                        <div class="col-sm-3">
+                        <div class="col-sm-4">
                             <div id="manager">
                                 <h2> Manager<h2>
                                 <ul>
@@ -155,7 +126,7 @@ const generateHTML = (answers) =>
                                 </ul>
                             </div>   
                         </div>     
-                        <div class="col-sm-3">
+                        <div class="col-sm-4">
                             <div id="engineer1">
                                 <h2> Engineer<h2>
                                 <ul>
@@ -166,7 +137,7 @@ const generateHTML = (answers) =>
                                 </ul>
                             </div>  
                         </div>      
-                        <div class="col-sm-3">
+                        <div class="col-sm-4">
                             <div id="engineer2">
                                 <h2> Engineer<h2>
                                 <ul>
@@ -177,7 +148,7 @@ const generateHTML = (answers) =>
                                 </ul>
                             </div>
                         </div>     
-                        <div class="col-sm-3">
+                        <div class="col-sm-4">
                             <div id="engineer3">
                                 <h2> Engineer<h2>
                                 <ul>
@@ -188,7 +159,7 @@ const generateHTML = (answers) =>
                                 </ul>
                             </div>  
                         </div>      
-                        <div class="col-sm-3">
+                        <div class="col-sm-4">
                             <div id="intern">
                                 <h2> Intern<h2>
                                 <ul>
@@ -205,26 +176,10 @@ const generateHTML = (answers) =>
 </html>`;
 
 const init = () => {
-    promptManager()
-      .then((answers) => writeFileAsync('index.html', generateHTML(answers)))
-      .then(() => console.log('Successfully wrote to index.html'))
-      .catch((err) => console.error(err));
-  };
-  
-  
+    promptUser()
+    .then((answers) => writeFileAsync('index.html', generateMarkdown(answers)))
+    .then(() => console.log('New README file successfully generated!'))
+    .catch((err) => console.log('Oops! Your README.md file was not created.', err));
+}
 
-// const init = () => {
-//     promptIntern()
-//       .then((answers) => writeFileAsync('index.html', generateHTML(answers)))
-//       prompt("Enter Details for Engineer or Intern")
-//       if (res === Engineer) then init(promptEngineer)
-//       for(var = i, i > Engineer1, i ++ )
-//       if else (red === intern then init(propmtIntern)
-//       .then(() => console.log('Successfully wrote to index.html'))
-//       .catch((err) => console.error(err));
-
-//   };
-
-
-  
-  init();
+init();
