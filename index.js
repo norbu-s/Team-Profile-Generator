@@ -219,7 +219,7 @@ const generateHTML = (answers) =>
 
 const init = () => {
     promptManager()
-    .then((answers) => writeFileAsync('./dist/index.html', generateMarkdown(answers)))
+    .then((answers) => writeFileAsync('dist/index.html', generateMarkdown(answers)))
     .then(() => console.log('New HTML file successfully generated!'))
     .catch((err) => console.log('Error, no files were generated.', err));
 }
