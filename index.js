@@ -1,13 +1,13 @@
-const inquirer = require('inquirer');
-const fs = require('fs');
+const inquirer = require(`inquirer`);
+const fs = require(`fs`);
 const util = require('util');
 const Prompt = require('inquirer/lib/prompts/base');
 const chalk = require('chalk');
 const generateMarkdown = require('./dist/generateMarkdown.js');
 const jest = require ('jest');
-const Manager = require ('./lib/Manager');
-const Intern = require ('./lib/Intern.js');
-const Engineer = require ('./lib/Engineer.js');
+const Manager1 = require('./lib/Manager');
+const Intern1 = require ('./lib/Intern.js');
+const Engineer1 = require ('./lib/Engineer.js');
 
 
 
@@ -36,21 +36,6 @@ const promptManager = () => {
             message: "What is the office number?",
             name: "officeNumber"
         },
-        {
-            type: "list",
-            message: "Please select a team member to add.",
-            name: "newUser ",
-            choices: [
-                "Engineer",
-                "Intern",
-                "Finish building my team"
-            ]
-        },
-    ]);
-};
-
-const promptUser = () => {
-    return inquirer.prompt([
         {
             type: "list",
             message: "Please select a team member to add.",
