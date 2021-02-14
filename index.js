@@ -15,30 +15,30 @@ const Engineer = require ('./lib/Engineer.js');
 const writeFileAsync = util.promisify(fs.writeFile);
 
 //Prompt for Employee
-const promptEmployee = () => {
-    return inquirer.prompt([
-        {
-            type:'input',
-            message: "What is the team members name?",
-            name: "employeeName"
-        },
-        {
-            type:'input',
-            message: "What is the team members ID?",
-            name: "empoyeeId"
-        },
-        {
-            type: "input",
-            message: "What is the team members email?",
-            name: "employeeEmail"
-        },
-        {
-            type: "input",
-            message: "What is the team members role?",
-            name: "employeeRole"
-        },
-    ]);
-};
+// const promptEmployee = () => {
+//     return inquirer.prompt([
+//         {
+//             type:'input',
+//             message: "What is the team members name?",
+//             name: "employeeName"
+//         },
+//         {
+//             type:'input',
+//             message: "What is the team members ID?",
+//             name: "empoyeeId"
+//         },
+//         {
+//             type: "input",
+//             message: "What is the team members email?",
+//             name: "employeeEmail"
+//         },
+//         {
+//             type: "input",
+//             message: "What is the team members role?",
+//             name: "employeeRole"
+//         },
+//     ]);
+// };
 
 //Prompt for Manager
 const promptManager = () => {
@@ -62,6 +62,16 @@ const promptManager = () => {
             type: "input",
             message: "What is the office number?",
             name: "managerPhone"
+        },
+        {
+            type: "list",
+            message: "Please select a team member to add.",
+            name: "newUser ",
+            choices: [
+                "Engineer",
+                "Intern",
+                "Finish building my team"
+            ]
         },
     ]);
 };
@@ -103,6 +113,16 @@ const promptEngineer = () => {
             message: "What is the team members github username?",
             name: "engineerGithub"
         },
+        {
+            type: "list",
+            message: "Please select a team member to add.",
+            name: "newUser ",
+            choices: [
+                "Engineer",
+                "Intern",
+                "Finish building my team"
+            ]
+        },
     ]);
 };
 const promptIntern = () => {
@@ -126,6 +146,16 @@ const promptIntern = () => {
             type: "input",
             message: "What school is the Intern from?",
             name: "school"
+        },
+        {
+            type: "list",
+            message: "Please select a team member to add.",
+            name: "newUser ",
+            choices: [
+                "Engineer",
+                "Intern",
+                "Finish building my team"
+            ]
         },
     ]);
 };
@@ -188,8 +218,8 @@ const generateHTML = (answers) =>
 </html>`;
 
 const init = () => {
-    promptUser()
-    .then((answers) => writeFileAsync('index.html', generateMarkdown(answers)))
+    promptManager()
+    .then((answers) => writeFileAsync('./dist/index.html', generateMarkdown(answers)))
     .then(() => console.log('New HTML file successfully generated!'))
     .catch((err) => console.log('Error, no files were generated.', err));
 }
