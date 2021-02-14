@@ -14,33 +14,6 @@ const Engineer = require ('./lib/Engineer.js');
 // create writeFile function using promises instead of a callback function
 const writeFileAsync = util.promisify(fs.writeFile);
 
-//Prompt for Employee
-// const promptEmployee = () => {
-//     return inquirer.prompt([
-//         {
-//             type:'input',
-//             message: "What is the team members name?",
-//             name: "employeeName"
-//         },
-//         {
-//             type:'input',
-//             message: "What is the team members ID?",
-//             name: "empoyeeId"
-//         },
-//         {
-//             type: "input",
-//             message: "What is the team members email?",
-//             name: "employeeEmail"
-//         },
-//         {
-//             type: "input",
-//             message: "What is the team members role?",
-//             name: "employeeRole"
-//         },
-//     ]);
-// };
-
-//Prompt for Manager
 const promptManager = () => {
     return inquirer.prompt([
         {
@@ -61,7 +34,7 @@ const promptManager = () => {
         {
             type: "input",
             message: "What is the office number?",
-            name: "managerPhone"
+            name: "officeNumber"
         },
         {
             type: "list",
