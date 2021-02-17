@@ -31,18 +31,6 @@ function renderOfficeNumber(officeNumber) {
       }
   }
 
-function renderNewUser(newUser) {
-  if (newUser === "Engineer") {
-      promptEngineer();
-      }
-    if( newUser === "Intern") {
-        promptIntern();
-    }
-    if( newUser === "Finish building my team") {
-        generateMarkdown();
-    }
-  }
-
 //Render Engineer
 function renderEngineerName(engineerName) {
   if (engineerName === '') {
@@ -76,17 +64,6 @@ function renderEngineerGithub(engineerGithub) {
       }
   }
 
-function renderEngineerNewUser(engineerNewUser) {
-  if( engineerNewUser === "Engineer") {
-      promptEngineer();
-  }
-  if( engineerNewUser === "Intern") {
-      promptIntern();
-  }
-  if( engineerNewUser === "Finish building my team") {
-      generateMarkdown();
-  }
-}
 
 //Render Intern
 function renderInterName(internName) {
@@ -132,8 +109,6 @@ function renderInternNewUser(internNewUser) {
       generateMarkdown();
   }
 }
-
-
 
 function generateMarkdown(data) {
   return ` 
