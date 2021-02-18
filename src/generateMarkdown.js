@@ -1,130 +1,71 @@
 //Render Manager
-function renderManagerName(managerName) {
-  if (managerName === '') {
-      return '';
-      } else { 
-      return ` Name: ${managerName}.`
-      }
-  }
+function renderManager(manager) {
+  return `<div class="col-sm-3">
+   <div id="manager">
+       <h2> Manager<h2>
+       <ul>
+       <li><p id="name"> Name:${managerAnswer.managerName}.</p>
+       <li><p id="name"> Role:${manager.getRole()}.</p>
+       <li><p id="id">ID:${managerAnswer.managerId}.</p>
+       <li><p id="email"> Email:${managerAnswer.managerEmail}.</p>
+       <li><p id="phone"> Office Number:${managerAnswer.officeNumber}.</p>
 
-function renderManagerId(managerId) {
-  if (managerId === '') {
-      return '';
-      } else { 
-      return ` ID: ${managerId}.`
-      }
-  }
-
-function renderManagerEmail (managerEmail) {
-  if (managerEmail === '') {
-      return '';
-      } else { 
-      return ` Email: ${managerEmail}.`
-      }
-  }
-             
-function renderOfficeNumber(officeNumber) {
-  if (officeNumber  === '') {
-      return '';
-      } else { 
-      return ` Office Number : ${officeNumber}.`
-      }
-  }
+       </ul>
+   </div>   
+</div>`;
+}
 
 //Render Engineer
-function renderEngineerName(engineerName) {
-  if (engineerName === '') {
-      return '';
-      } else { 
-      return ` Name: ${engineerName}.`
-      }
-  }
-
-function renderEngineerId(engineerId) {
-  if (engineerId === '') {
-      return '';
-      } else { 
-      return ` ID: ${engineerId}.`
-      }
-  }
-   
-function renderEngineerEmail(engineerEmail) {
-  if (engineerEmail === '') {
-      return '';
-      } else { 
-      return ` Email: ${engineerEmail}.`
-      }
-  }        
-
-function renderEngineerGithub(engineerGithub) {
-  if (engineerGithub === '') {
-      return '';
-      } else { 
-      return ` Github: ${engineerGithub}.`
-      }
-  }
-
+function renderEngineer(engineer) {
+  return `<div class="col-sm-3">
+   <div id="engineer">
+       <h2> Engineer<h2>
+       <ul>
+       <li><p id="name"> Name:${engineerAnswer.engineerName}.</p>
+       <li><p id="name"> Role:${engineer.getRole()}.</p>
+       <li><p id="id">ID:${engineerAnswer.engineerId}.</p>
+       <li><p id="email"> Email:${engineerAnswer.engineerEmail}.</p>
+       <ahref='${engineerAnswer.engineerGithub}'> <li><p id="github"> GitHub:${engineerAnswer.engineerGithub}.</p>
+       </ul>
+   </div>  
+</div>   `;
+}
 
 //Render Intern
-function renderInterName(internName) {
-  if (internName === '') {
-      return '';
-      } else { 
-      return `Name: ${internName}.`
-      }
+function renderIntern(intern) {
+  return `<div class="col-sm-3">
+  <div id="intern">
+      <h2> Intern<h2>
+      <ul>
+      <li><p id="name"> Name:${internAnswer.internName}.</p>
+      <li><p id="name"> Role:${intern.getRole()}.</p>
+      <li><p id="id">ID:${internAnswer.internId}.</p>
+      <li><p id="email"> Email:${internAnswer.internEmail}.</p>
+      <li><p id="school"> School:${internAnswer.internSchool}.</p>
+      </ul>
+  </div>   
+</div>`;
 }
 
-function renderInterId(internId) {
-  if (internId === '') {
-      return '';
-      } else { 
-      return `ID: ${internId}.`
-      }
-}
+//Render Employees
+function MySquad() {
+  const htmlArray = []
+  const generateHTML = (answers) =>
+  `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"> 
+<link rel="stylesheet" type "text/css" href="./CSS/style.css">
+<title>My Team</title>
+</head>
+    <body>
+        <div class="banner-bar'>
+          <h1> MY TEAM</h1>
+        </div>
 
-function renderInterEmail(internEmail) {
-  if (internEmail === '') {
-      return '';
-      } else { 
-      return `Email: ${internEmail}.`
-      }
-}
+    </body>
+</html>`;
 
-function renderInternSchool(internSchool) {
-  if (internSchool === '') {
-      return '';
-      } else { 
-      return `School: ${internSchool}.`
-      }
-}
-
-function renderInternNewUser(internNewUser) {
-  if( internNewUser === "Engineer") {
-      promptEngineer();
-  }
-  if( internNewUser === "Intern") {
-      promptIntern();
-  }
-  if( internNewUser === "Finish building my team") {
-      generateMarkdown();
-  }
-}
-
-function generateMarkdown(data) {
-  return ` 
-${renderManagerName(data.managerName)}
-${renderManagerId(data.managerID)}
-${renderManagerEmail(data.managerEmail)};
-${renderOfficeNumber(data.officeNumber)};
-${renderEngineerName(data.engineerName)};
-${renderEngineerId(data.engineerId)};
-${renderEngineerEmail(data.engineerEmail)};
-${renderEngineerGithub(data.engineerGithub)};
-${renderInterName(data.internName)};
-${renderInterId(data.interId)};
-${renderInterEmail(data.internEmail)};
-${renderInternSchool(data.internSchool)}`;
-}
-
-
-module.exports = generateMarkdown;
+module.exports = generateHTML;
