@@ -13,6 +13,7 @@ describe("getName()")
       expect(obj).toEqual("test");
     });
   });
+
 describe("getId()")
     it("Returns the Id of the manager", () => {
       const obj = manager.getId();
@@ -20,22 +21,25 @@ describe("getId()")
       expect(obj).toEqual("121");
     });
   });
+
 describe("getEmail()")
     it("Returns the email of the manager", () => {
       const obj = manager.getEmail();
   
       expect(obj).toEqual("test@test.com");
     });
+
 describe("getOfficeNumber()")
     it("Returns the OfficeNumber of the manager", () => {
       const obj = manager.getOfficeNumber();
   
       expect(obj).toEqual("1234567890");
     });
+    
 describe("getRole()", () => {
       it("returns the string 'Manager'", () => {
           const obj = manager.getRole();
-          
+
           expect(obj).toEqual('Manager');
       });
 });
