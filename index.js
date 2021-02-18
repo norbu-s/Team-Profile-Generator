@@ -56,22 +56,22 @@ const promptEngineer = () => {
       {
         type: "input",
         message: "What is the team members name?",
-        name: "engineerName",
+        name:"engineerName",
       },
       {
         type: "input",
         message: "What is the team members ID?",
-        name: "engineerId",
+        name:"engineerId",
       },
       {
         type: "input",
         message: "What is the team members email?",
-        name: "engineerEmail",
+        name:"engineerEmail",
       },
       {
         type: "input",
         message: "What is the team members github username?",
-        name: "engineerGithub",
+        name:"engineerGithub",
       },
     ])
     .then((engineerAnswer) => {
@@ -92,22 +92,22 @@ function promptIntern() {
       {
         type: "input",
         message: "What is the team members name?",
-        name: "internName",
+        name:"internName",
       },
       {
         type: "input",
         message: "What is the team members ID?",
-        name: "internId",
+        name:"internId",
       },
       {
         type: "input",
         message: "What is the team members email?",
-        name: "internEmail",
+        name:"internEmail",
       },
       {
         type: "input",
         message: "What school is the Intern from?",
-        name: "internSchool",
+        name:"internSchool",
       },
     ])
     .then((internAnswer) => {
