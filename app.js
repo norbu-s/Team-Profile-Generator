@@ -36,13 +36,13 @@ const promptManager = () => {
       },
     ])
     .then((answer) => {
-      const manager = new Manager(
+      managerAnswer = new Manager(
         answer.managerName,
         answer.managerId,
         answer.managerEmail,
         answer.officeNumber
       );
-      employees.push(manager);
+      employees.push(managerAnswer);
       promptMain();
     });
 };
@@ -72,13 +72,13 @@ const promptEngineer = () => {
       },
     ])
     .then((answer) => {
-      engineeranswer = new Engineer(
+      engineerAnswer = new Engineer(
         answer.engineerName,
         answer.engineerId,
         answer.engineerEmail,
         answer.engineerGithub
       );
-      employees.push(engineeranswer);
+      employees.push(engineerAnswer);
       promptMain();
     });
 };
@@ -114,7 +114,7 @@ const promptIntern = () => {
         answer.internEmail,
         answer.internSchool
       );
-      employees.push(internanswer);
+      employees.push(internAnswer);
       promptMain();
     });
 };
