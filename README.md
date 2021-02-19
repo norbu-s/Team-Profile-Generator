@@ -33,7 +33,8 @@ Resources
 * https://developer.mozilla.org/
 
 Link
-* GitHub Repo - 
+* GitHub Repo - https://github.com/norbu-s/Team-Profile-Generator
+* Video Link - 
 
 
 # ScreenShot
