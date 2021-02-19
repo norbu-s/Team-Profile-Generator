@@ -18,11 +18,18 @@
   "homepage": "https://github.com/norbu-s/Team-Profile-Generator#readme",
   "dependencies": {
     "chalk": "^4.1.0",
+    "express": "^4.17.1",
     "inquirer": "^7.3.3",
     "jest": "^26.6.3",
     "logger": "0.0.1",
     "path": "^0.12.7",
     "prompt-sync": "^4.2.0",
     "validator": "^13.5.2"
-  }
+  },
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "devDependencies": {},
+  "keywords": []
 }
