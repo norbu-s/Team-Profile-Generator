@@ -1,15 +1,20 @@
+const Manager = require("../lib/Manager");
+const Intern = require("../lib/Intern");
+const Engineer = require("../lib/Engineer");
+
+
+
 //Render Manager
 function renderManager(manager) {
   return `<div class="col-sm-3">
    <div id="manager">
        <h2> Manager<h2>
        <ul>
-       <li><p id="name"> Name:${managerAnswer.managerName}.</p>
-       <li><p id="name"> Role:${manager.getRole()}.</p>
-       <li><p id="id">ID:${managerAnswer.managerId}.</p>
-       <li><p id="email"> Email:${managerAnswer.managerEmail}.</p>
-       <li><p id="phone"> Office Number:${managerAnswer.officeNumber}.</p>
-
+       <li><p id="name"> Name:${answers.managerName}.</p>
+       <li><p id="name"> Role:${answers.getRole()}.</p>
+       <li><p id="id">ID:${answers.managerId}.</p>
+       <li><p id="email"> Email:${answers.managerEmail}.</p>
+       <li><p id="phone"> Office Number:${answers.officeNumber}.</p>
        </ul>
    </div>   
 </div>`;
@@ -21,11 +26,11 @@ function renderEngineer(engineer) {
    <div id="engineer">
        <h2> Engineer<h2>
        <ul>
-       <li><p id="name"> Name:${engineerAnswer.engineerName}.</p>
-       <li><p id="name"> Role:${engineer.getRole()}.</p>
-       <li><p id="id">ID:${engineerAnswer.engineerId}.</p>
-       <li><p id="email"> Email:${engineerAnswer.engineerEmail}.</p>
-       <ahref='${engineerAnswer.engineerGithub}'> <li><p id="github"> GitHub:${engineerAnswer.engineerGithub}.</p>
+       <li><p id="name"> Name:${answers.engineerName}.</p>
+       <li><p id="role"> Role:${answers.getRole()}.</p>
+       <li><p id="id">ID:${answers.engineerId}.</p>
+       <li><p id="email"> Email:${answers.engineerEmail}.</p>
+       <ahref='<li><p id="github"> GitHub:${answers.engineerGithub}'>.</p>
        </ul>
    </div>  
 </div>   `;
@@ -37,21 +42,35 @@ function renderIntern(intern) {
   <div id="intern">
       <h2> Intern<h2>
       <ul>
-      <li><p id="name"> Name:${internAnswer.internName}.</p>
-      <li><p id="name"> Role:${intern.getRole()}.</p>
-      <li><p id="id">ID:${internAnswer.internId}.</p>
-      <li><p id="email"> Email:${internAnswer.internEmail}.</p>
-      <li><p id="school"> School:${internAnswer.internSchool}.</p>
+      <li><p id="name"> Name:${answers.internName}.</p>
+      <li><p id="name"> Role:${answers.getRole()}.</p>
+      <li><p id="id">ID:${answers.internId}.</p>
+      <li><p id="email"> Email:${answers.internEmail}.</p>
+      <li><p id="school"> School:${answers.internSchool}.</p>
       </ul>
   </div>   
 </div>`;
 }
 
+function renderEmployees() {
+  let page = '';
+  var manager = [];
+  for (var i = 0; i < [0]; i++) {
+    page + renderManager(manager);
+  }
+  for (var i = 0; i < [0]; i++) {
+    page + renderEngineer(engineer);
+  }
+  for (var i = 0; i < [0]; i++) {
+    page + renderEngineer(intern);
+  }
+  return page
+}
+
+
 //Render Employees
-function MySquad() {
-  const htmlArray = []
-  const generateHTML = (answers) =>
-  `<!DOCTYPE html>
+function generateMarkdown(answers) {
+  return `<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -64,8 +83,9 @@ function MySquad() {
         <div class="banner-bar'>
           <h1> MY TEAM</h1>
         </div>
-
+ ${renderEmployees()};
     </body>
 </html>`;
+}
 
-module.exports = generateHTML;
+module.exports = generateMarkdown;

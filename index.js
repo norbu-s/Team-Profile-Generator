@@ -3,8 +3,8 @@ const fs = require(`fs`);
 const util = require("util");
 const Prompt = require("inquirer/lib/prompts/base");
 const chalk = require("chalk");
-const generateMarkdown = require("./src/generateMarkdown.js");
 const jest = require("jest");
+const generateMarkdown = require("./src/generateMarkdown")
 const Manager = require("./lib/Manager");
 const Intern = require("./lib/Intern.js");
 const Engineer = require("./lib/Engineer.js");
@@ -12,7 +12,7 @@ const Engineer = require("./lib/Engineer.js");
 // create writeFile function using promises instead of a callback function
 const writeFileAsync = util.promisify(fs.writeFile);
 
-const employees = [];
+const employees = [[],[],[]];
 
 const promptManager = () => {
   inquirer
@@ -20,32 +20,39 @@ const promptManager = () => {
       {
         type: "input",
         message: "What is the team members name?",
-        name: "managerName",
+        name:"managerName",
+        // when: (answer) => answer.content.includes(managerName)
       },
       {
         type: "input",
         message: "What is the team members ID?",
-        name: "managerId",
+        name:"managerId",
+        // when: (answer) => answer.content.includes(managerId)
+
       },
       {
         type: "input",
         message: "What is the team members email?",
-        name: "managerEmail",
+        name:"managerEmail",
+        // when: (answer) => answer.content.includes(managerEmail)
+
       },
       {
         type: "input",
         message: "What is the office number?",
-        name: "officeNumber",
+        name:"officeNumber",
+        // when: (answer) => answer.content.includes(officeNumber)
+
       },
     ])
-    .then((managerAnswer) => {
-      manager = new Manager(
-        managerAnswer.managerName,
-        managerAnswer.managerId,
-        managerAnswer.managerEmail,
-        managerAnswer.officeNumber
+    .then((answer) => {
+        const manager = new Manager(
+        answer.managerName,
+        answer.managerId,
+        answer.managerEmail,
+        answer.officeNumber
       );
-      employees.push(manager);
+      employees[0].push(manager);
       promptMain();
     });
 };
@@ -56,105 +63,144 @@ const promptEngineer = () => {
       {
         type: "input",
         message: "What is the team members name?",
-        name:"engineerName",
+        name: "engineerName",
+        // when: (answer) => answer.content.includes(engineerName)
       },
       {
         type: "input",
         message: "What is the team members ID?",
-        name:"engineerId",
+        name: "engineerId",
+        // when: (answer) => answer.content.includes(engineerId)
+
       },
       {
         type: "input",
         message: "What is the team members email?",
-        name:"engineerEmail",
+        name: "engineerEmail",
+        // when: (answer) => answer.content.includes(engineerEmail)
+
       },
       {
         type: "input",
         message: "What is the team members github username?",
-        name:"engineerGithub",
+        name: "engineerGithub",
+        // when: (answer) => answer.content.includes(engineerGithub)
       },
     ])
-    .then((engineerAnswer) => {
-      const newEngineer = new Engineer(
-        engineerAnswer.engineerName,
-        engineerAnswer.engineerId,
-        engineerAnswer.engineerEmail,
-        engineerAnswer.engineerGithub
+    .then((answer) => {
+      engineeranswer = new Engineer(
+        answer.engineerName,
+        answer.engineerId,
+        answer.engineerEmail,
+        answer.engineerGithub
       );
-      employees.push(newEngineer);
+      employees[1].push(engineeranswer);
       promptMain();
     });
-};
+}
 
-function promptIntern() {
+// console.log(engineer)
+
+const promptIntern = () => {
   inquirer
     .prompt([
       {
         type: "input",
         message: "What is the team members name?",
         name:"internName",
+        // when: (answer) => answer.content.includes(internName)
       },
       {
         type: "input",
         message: "What is the team members ID?",
         name:"internId",
-      },
+        // when: (answer) => answer.content.includes(internId)
+     },
       {
         type: "input",
         message: "What is the team members email?",
         name:"internEmail",
-      },
+        // when: (answer) => answer.content.includes(internEmail)
+     },
       {
         type: "input",
         message: "What school is the Intern from?",
         name:"internSchool",
+        // when: (answer) => answer.content.includes(internSchool)
       },
     ])
-    .then((internAnswer) => {
-      const newIntern = new Intern(
-        internAnswer.internName,
-        internAnswer.internId,
-        internAnswer.internEmail,
-        internAnswer.internSchool,
+    .then((answer) => {
+      internanswer = new Intern(
+        answer.internName,
+        answer.internId,
+        answer.internEmail,
+        answer.internSchool
       );
-      employees.push(newIntern);
+      employees[2].push(internanswer);
       promptMain();
     });
 }
 
-function promptMain() {
-  //   console.log(employees);
+const promptMain = () => {
   inquirer
     .prompt([
       {
         type: "list",
-        message: "Please select a team member to add.",
+        message: "Add a team member .",
         name: "newUser",
-        choices: ["Engineer", "Intern", "Finish building my team"],
+        choices: ["Engineer","Intern","NO"],
       },
     ])
-    .then((mainAnswer) => {
-      if (mainAnswer.newUser === "Engineer") {
+    .then((answer) => {
+      if (answer.newUser === "Engineer") {
         promptEngineer();
       }
-      if (mainAnswer.newUser === "Intern") {
+      if (answer.newUser === "Intern") {
         promptIntern();
       }
-      if (mainAnswer.newUser === "Finish building my team") {
-        generateMarkdown();
+      if (answer.newUser === "NO") {
+       generateMarkdown();
       }
     });
 }
 
+// var manager = [];
+// for (var i=0; i<1; i++) {
+//     manager[i] = {
+//         name: "name" + i+1,
+//         id: "age" + i+1,
+//         email: "hometown" + i+1
+//     };
+// }
+// console.log(title);
 
+// const generateMarkdown = (answers) =>
+//   //  when: (answers) => ${answers.description}
+//   `<!DOCTYPE html>
+//   <html lang="en">
+//   <head>
+//   <meta charset="UTF-8">
+//   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+//   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"> 
+//   <link rel="stylesheet" type "text/css" href="./CSS/style.css">
+//   <title>My Team</title>
+//   </head>
+//       <body>
+//           <div class="banner-bar'>
+//           <h1> MY TEAM</h1>
+//           </div>
+//           ${RenderEmployees(manager,engineer,intern)};
+// </body>
+// </html>`;
 
 const init = () => {
   promptManager()
-    .then((answers) => writeFileAsync("dist/index.html", generateHTML(answers)))
+    .then((answers) => writeFileAsync("dist/index.html", generateMarkdown.js(answers)))
     .then(() => console.log("New HTML file successfully generated!"))
     .catch((err) => console.log("Error, no files were generated.", err));
 };
 
-// init();
+//init();
 
 promptManager();
+
