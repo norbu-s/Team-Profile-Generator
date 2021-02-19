@@ -1,10 +1,8 @@
 const inquirer = require(`inquirer`);
 const fs = require(`fs`);
 const util = require("util");
-const Prompt = require("inquirer/lib/prompts/base");
-const chalk = require("chalk");
-const jest = require("jest");
-const generateMarkdown = require("./src/generateMarkdown")
+const path = require('path');
+const generateMarkdown = require("./src/generateMarkdown");
 const Manager = require("./lib/Manager");
 const Intern = require("./lib/Intern.js");
 const Engineer = require("./lib/Engineer.js");
@@ -12,7 +10,7 @@ const Engineer = require("./lib/Engineer.js");
 // create writeFile function using promises instead of a callback function
 const writeFileAsync = util.promisify(fs.writeFile);
 
-const employees = [[],[],[]];
+const employees = [];
 
 const promptManager = () => {
   inquirer
@@ -20,39 +18,34 @@ const promptManager = () => {
       {
         type: "input",
         message: "What is the team members name?",
-        name:"managerName",
+        name: "managerName",
         // when: (answer) => answer.content.includes(managerName)
       },
       {
         type: "input",
         message: "What is the team members ID?",
-        name:"managerId",
-        // when: (answer) => answer.content.includes(managerId)
-
+        name: "managerId",
       },
       {
         type: "input",
         message: "What is the team members email?",
-        name:"managerEmail",
+        name: "managerEmail",
         // when: (answer) => answer.content.includes(managerEmail)
-
       },
       {
         type: "input",
         message: "What is the office number?",
-        name:"officeNumber",
-        // when: (answer) => answer.content.includes(officeNumber)
-
+        name: "officeNumber",
       },
     ])
     .then((answer) => {
-        const manager = new Manager(
+      const manager = new Manager(
         answer.managerName,
         answer.managerId,
         answer.managerEmail,
         answer.officeNumber
       );
-      employees[0].push(manager);
+      employees.push(manager);
       promptMain();
     });
 };
@@ -70,15 +63,23 @@ const promptEngineer = () => {
         type: "input",
         message: "What is the team members ID?",
         name: "engineerId",
-        // when: (answer) => answer.content.includes(engineerId)
-
-      },
+        // validate: function (num) {
+        //   numbers = /^[0-9]+$/.test(num);
+        //   if (numbers) {
+        //     log.blue(`        ----------Id accepted----------`);
+        //     return true;
+        //   } else {
+        //     log.red(
+        //       `        ----------Please enter a number for ID (No letters or symbols)----------`
+        //     );
+        //     return false;
+        //   }
+        },
       {
         type: "input",
         message: "What is the team members email?",
         name: "engineerEmail",
         // when: (answer) => answer.content.includes(engineerEmail)
-
       },
       {
         type: "input",
@@ -97,7 +98,7 @@ const promptEngineer = () => {
       employees[1].push(engineeranswer);
       promptMain();
     });
-}
+};
 
 // console.log(engineer)
 
@@ -107,25 +108,37 @@ const promptIntern = () => {
       {
         type: "input",
         message: "What is the team members name?",
-        name:"internName",
+        name: "internName",
         // when: (answer) => answer.content.includes(internName)
       },
       {
         type: "input",
         message: "What is the team members ID?",
-        name:"internId",
-        // when: (answer) => answer.content.includes(internId)
-     },
+        name: "internId",
+
+        validate: function (num) {
+          numbers = /^[0-9]+$/.test(num);
+          if (numbers) {
+            console.log.blue(`----------Id accepted----------`);
+            return true;
+          } else {
+            console.log.red(
+              `----------Please enter a number for ID (No letters or symbols)----------`
+            );
+            return false;
+          }
+        },
+      },
       {
         type: "input",
         message: "What is the team members email?",
-        name:"internEmail",
+        name: "internEmail",
         // when: (answer) => answer.content.includes(internEmail)
-     },
+      },
       {
         type: "input",
         message: "What school is the Intern from?",
-        name:"internSchool",
+        name: "internSchool",
         // when: (answer) => answer.content.includes(internSchool)
       },
     ])
@@ -139,7 +152,7 @@ const promptIntern = () => {
       employees[2].push(internanswer);
       promptMain();
     });
-}
+};
 
 const promptMain = () => {
   inquirer
@@ -148,7 +161,7 @@ const promptMain = () => {
         type: "list",
         message: "Add a team member .",
         name: "newUser",
-        choices: ["Engineer","Intern","NO"],
+        choices: ["Engineer", "Intern", "NO"],
       },
     ])
     .then((answer) => {
@@ -159,10 +172,10 @@ const promptMain = () => {
         promptIntern();
       }
       if (answer.newUser === "NO") {
-       generateMarkdown();
+        generateMarkdown();
       }
     });
-}
+};
 
 // var manager = [];
 // for (var i=0; i<1; i++) {
@@ -181,7 +194,7 @@ const promptMain = () => {
 //   <head>
 //   <meta charset="UTF-8">
 //   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-//   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"> 
+//   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 //   <link rel="stylesheet" type "text/css" href="./CSS/style.css">
 //   <title>My Team</title>
 //   </head>
@@ -193,14 +206,6 @@ const promptMain = () => {
 // </body>
 // </html>`;
 
-const init = () => {
-  promptManager()
-    .then((answers) => writeFileAsync("dist/index.html", generateMarkdown.js(answers)))
-    .then(() => console.log("New HTML file successfully generated!"))
-    .catch((err) => console.log("Error, no files were generated.", err));
-};
-
 //init();
 
 promptManager();
-
