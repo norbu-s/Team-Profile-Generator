@@ -1,44 +1,32 @@
 const Engineer = require("../lib/Engineer");
 
-describe("Engineer", () => {
-    it("Should return an object with 4 properties", () => {
-      const obj = new Engineer("test","100","testtest.com","github");
-  
-  describe("getName()")
-      it("Returns the name of the Engineer", () => {
-        const obj = Engineer.getName();
-    
-        expect(obj).toEqual("test");
-      });
-    });
-    
-  describe("getId()")
-      it("Returns the Id of the Engineer", () => {
-        const obj = Engineer.getId();
-    
-        expect(obj).toEqual("121");
-      });
-    });
 
-  describe("getEmail()")
-      it("Returns the email of the Engineer", () => {
-        const obj = Engineer.getEmail();
-    
-        expect(obj).toEqual("test@test.com");
+test("Should return an object with 4 properties", () => {
+  const e =new Engineer("test","11","test@test.com","github");
+  expect(e.github).toBe("object");
+});
+
+test("Returns the name of the Engineer", () => {
+  const e = Engineer.getName();
+        expect(e.getName()).toEqual("Ed");
       });
 
-  describe("getGithubUsername()")
-      it("Returns the OfficeNumber of the Engineer", () => {
-        const obj = Engineer.getGithubUsername();
-    
-        expect(obj).toEqual("1234567890");
+test("Returns the Id of the Engineer", () => {
+  const e = Engineer.getId();
+        expect(e.getId()).toEqual("12");
       });
 
-  describe("getRole()", () => {
-        it("returns the string 'Engineer'", () => {
-            const obj = Engineer.getRole();
+test("Returns the email of the Engineer", () => {
+  const e = Engineer.getEmail();
+        expect(e.getEmail()).toEqual("test@test.com");
+      });
 
-            expect(obj).toEqual('Engineer');
-        });
-  });
-  
+test("Returns the OfficeNumber of the Engineer", () => {
+  const e = Engineer.getGithubUsername();
+        expect(e.getGithubUsername()).toEqual("test@github.com");
+      }); 
+
+test("Returns the role of the Engineer", () => {
+  const e = Engineer.getRole();
+        expect(e.getRole).toEqual("Engineer");
+      }); 

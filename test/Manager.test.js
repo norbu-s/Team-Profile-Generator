@@ -1,45 +1,20 @@
 const Manager = require("../lib/Manager");
+const Employee = require("../lib/Employee");
 
-// test for Manager
+test("Can set office number via constructor",() => {
+  const testValue =100;
+  const e = new Manager("Ed", 1, teset2teset.com, testValue);
+  expect(e.officeNumber).toBe(testValue);
+});
 
-describe("Manager", () => {
-  it("Should return an object with 4 properties", () => {
-    const obj = new Manager("test","100","testtest.com","1234567890");
+test("getRole() should return\"Manager\"",() => {
+  const testValue = "Manager";
+  const e = new Manager("Ed", 1, teset2teset.com, 100);
+  expect(e.getRole()).toBe(testValue);
+});
 
-describe("getName()")
-    it("Returns the name of the manager", () => {
-      const obj = manager.getName();
-  
-      expect(obj).toEqual("test");
-    });
-  });
-
-describe("getId()")
-    it("Returns the Id of the manager", () => {
-      const obj = manager.getId();
-  
-      expect(obj).toEqual("121");
-    });
-  });
-
-describe("getEmail()")
-    it("Returns the email of the manager", () => {
-      const obj = manager.getEmail();
-  
-      expect(obj).toEqual("test@test.com");
-    });
-
-describe("getOfficeNumber()")
-    it("Returns the OfficeNumber of the manager", () => {
-      const obj = manager.getOfficeNumber();
-  
-      expect(obj).toEqual("1234567890");
-    });
-    
-describe("getRole()", () => {
-      it("returns the string 'Manager'", () => {
-          const obj = manager.getRole();
-
-          expect(obj).toEqual('Manager');
-      });
+test("Can get Office number via getOffice()",() => {
+  const testValue = "100";
+  const e = new Manager("Ed", 1, teset2teset.com, testValue);
+  expect(e.getOfficeNumber()).toBe(testValue);
 });
