@@ -1,128 +1,62 @@
-// const Manager = require("../lib/Manager");
-// const Intern = require("../lib/Intern.js");
-// const Engineer = require("../lib/Engineer.js");
-// const app = require('app.js');
-
-// //function to render teams
-// // function renderTeam(list) {
-// //     let page = "";
-// //     for (var i = 0; i < list[0].length; i++) {
-// //         page += renderManager(list[0][i]);
-// //     }
-
-// //     for (var i = 0; i < list[1].length; i++) {
-// //         page += renderEngineer(list[1][i]);
-// //     }
-
-// //     for (var i = 0; i < list[2].length; i++) {
-// //         page += renderIntern(list[2][i]);
-// //     }
-// //     return page;
-// // }
-
-// // //function to render manager
-// // function renderManager(manager) {
-// // return `{ <div class="col-sm-3">
-// //    <div id="manager">
-// //        <h2> Manager<h2>
-// //        <ul>
-// //        <li><p id="name"> Name:${answers.managerName}.</p>
-// //        <li><p id="name"> Role:${answers.getRole()}.</p>
-// //        <li><p id="id">ID:${answers.managerId}.</p>
-// //        <li><p id="email"> Email:${answers.managerEmail}.</p>
-// //        <li><p id="phone"> Office Number:${answers.officeNumber}.</p>
-// //        </ul>
-// //    </div>   
-// // </div>`;
-// // }
-// // //functioon to render engineer
-// // function renderEngineer(engineer) {
-// // return `<div class="col-sm-3">
-// //     <div id="engineer">
-// //         <h2> Engineer<h2>
-// //         <ul>
-// //         <li><p id="name"> Name:${answers.engineerName}.</p>
-// //         <li><p id="role"> Role:${answers.getRole()}.</p>
-// //         <li><p id="id">ID:${answers.engineerId}.</p>
-// //         <li><p id="email"> Email:${answers.engineerEmail}.</p>
-// //         <li><p id="github"> GitHub:${answers.engineerGithub}.</p>
-// //         </ul>
-// //     </div>  
-// //  </div>`;
-// // }
-// // //fucntion to render intern
-// //  function renderInter(intern) {
-// //  return `<div class="col-sm-3">
-// //     <div id="engineer">
-// //         <h2> Engineer<h2>
-// //         <ul>
-// //         <li><p id="name"> Name:${answers.engineerName}.</p>
-// //         <li><p id="role"> Role:${answers.getRole()}.</p>
-// //         <li><p id="id">ID:${answers.engineerId}.</p>
-// //         <li><p id="email"> Email:${answers.engineerEmail}.</p>
-// //         <li><p id="github"> GitHub:${answers.engineerGithub}.</p>
-// //         </ul>
-// //     </div>  
-// //  </div> `;
-// //  }
-
-//  function renderHTML(list) {
-// return `<!DOCTYPE html>
-// <html lang="en">
-// <head>
-//     <meta charset="UTF-8">
-//     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-//     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"> 
-//     <link rel="stylesheet" type "text/css" href="./CSS/style.css">
-//     <title>My Team</title>
-// </head>
-//     <body>
-//         <div class="container-fluid">
-//         <div class="row">
-//             <div class="col-12 jumbotron mb-3 team-heading">
-//                 <h1 class="text-center">My Team</h1>
-//             </div>
-//         </div>
-//     </div>
-//     <div class="col-sm-3">
-//    <div id="manager">
-//        <h2> Manager<h2>
-//        <ul>
-//        <li><p id="name"> Name:${answers.managerName}.</p>
-//        <li><p id="name"> Role:${answers.getRole()}.</p>
-//        <li><p id="id">ID:${answers.managerId}.</p>
-//        <li><p id="email"> Email:${answers.managerEmail}.</p>
-//        <li><p id="phone"> Office Number:${answers.officeNumber}.</p>
-//        </ul>
-//    </div>   
-// </div>
-// <div class="col-sm-3">
-//     <div id="engineer">
-//         <h2> Engineer<h2>
-//         <ul>
-//         <li><p id="name"> Name:${answers.engineerName}.</p>
-//         <li><p id="role"> Role:${answers.getRole()}.</p>
-//         <li><p id="id">ID:${answers.engineerId}.</p>
-//         <li><p id="email"> Email:${answers.engineerEmail}.</p>
-//         <li><p id="github"> GitHub:${answers.engineerGithub}.</p>
-//         </ul>
-//     </div>  
-//  </div>
-//  <div class="col-sm-3">
-//     <div id="engineer">
-//         <h2> Engineer<h2>
-//         <ul>
-//         <li><p id="name"> Name:${answers.engineerName}.</p>
-//         <li><p id="role"> Role:${answers.getRole()}.</p>
-//         <li><p id="id">ID:${answers.engineerId}.</p>
-//         <li><p id="email"> Email:${answers.engineerEmail}.</p>
-//         <li><p id="github"> GitHub:${answers.engineerGithub}.</p>
-//         </ul>
-//     </div>  
-//  </div>
-//     </body>
-// </html>`;
-// }
+const Manager = require("../lib/Manager");
+const Intern = require("../lib/Intern.js");
+const Engineer = require("../lib/Engineer.js");
+const app = require('../app.js');
 
 
-//  module.exports = renderHTML;
+
+const renderHTML = (employees) => {
+    let html = `
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>My Team</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+            integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" href="dist/CSS/style.css">
+        <script src="https://kit.fontawesome.com/c502137733.js"></script>
+    </head>
+    <body>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12 jumbotron mb-3 team-heading">
+                    <h1 class="text-center">My Team</h1>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="team-area col-12 d-flex justify-content-center">
+    `;
+    const managers = employees.filter(
+      (employee) => employee.getRole() === 'Manager'
+    );
+    const engineers = employees.filter(
+      (employee) => employee.getRole() === 'Engineer'
+    );
+    const interns = employees.filter(
+      (employee) => employee.getRole() === 'Intern'
+    );
+    managers.forEach(manager => {
+      html += `<div class="managerRow" col-4 d-flex justify-content-center><h2>Name: ${manager.getName()}</h2><h3>Role: ${manager.getRole()}</h3><h3>Email: ${manager.getEmail()}</h3><h3>Phone Number: ${manager.getOfficeNumber()}</h3></div>`;
+    });
+    engineers.forEach(engineer => {
+      html += `<div class="enginnerRow" col-4 d-flex justify-content-center><h2>Name: ${engineer.getName()}</h2><h3>Role: ${engineer.getRole()}</h3><h3>Eail: ${engineer.getEmail()}</h3><h3>Github: ${engineer.getGithubUsername()}</h3></div>`;
+    });
+    interns.forEach(intern => {
+      html += `<div class="internRow "col-4 d-flex justify-content-center><h2>Name: ${intern.getName()}</h2><h3>Role: ${intern.getRole()}</h3><h3>Role: ${intern.getEmail()}</h3><h3>School: ${intern.getSchool()}</h3></div>`;
+    });
+    `
+    </div>
+    </div>
+  </div>
+  </body>
+  </html>
+  `;
+    return html
+  };
+
+ module.exports = renderHTML;
