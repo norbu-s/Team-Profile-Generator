@@ -34,7 +34,7 @@ Resources
 
 Link
 * GitHub Repo - https://github.com/norbu-s/Team-Profile-Generator
-* Video Link - https://drive.google.com/file/d/1zYMbTOUBK__8McrIHctsvKTrdYJ13yad/view?usp=sharing
+* Video Link - https://drive.google.com/file/d/19oG3x-uJy0zmacLmwZUlS5nSJZ26Nvve/view?usp=sharing
 
 
 # ScreenShot
